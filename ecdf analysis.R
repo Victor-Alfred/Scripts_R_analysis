@@ -191,7 +191,7 @@ title(ylab=expression(italic(ecdf)), line=2.63, cex.lab=2)
 
 
 #############################
-# Reading from sample:  FOR THE PAPER---- FINAL FIGURES WITH INCREASED FONTS
+# Reading from sample: Ecad piuncta distances__ FOR THE PAPER---- FINAL FIGURES WITH INCREASED FONTS
 
 rm(list=ls())
 
@@ -455,6 +455,54 @@ ggplot() +
   scale_color_manual(values=c("#606060", "#FF8000", "#0000FF"))
 dev.off()
 
+
+# Kruskal-wallis test for Arf1GFOP distances
+
+library(PMCMR)
+
+attach(dat)
+
+kruskal.test(Rel_dist ~ Genotype, data = dat)
+
+posthoc.kruskal.dunn.test(x = Rel_dist, g = Genotype, p.adjust.method = "bonferroni")
+ 
+#####################################################
+##########  Stat Results for Arf1GFP distances #######
+######################################################
+
+# Kruskal-Wallis rank sum test
+# 
+# data:  Rel_dist by Genotype
+# Kruskal-Wallis chi-squared = 19.248, df = 2, p-value = 6.611e-05
+
+# Pairwise comparisons using Dunn's-test for multiple	
+#                          comparisons of independent samples 
+# s
+# data:  Rel_dist and Genotype 
+# 
+#          Control Dhc36583
+# Dhc36583 0.637   -       
+# Khc35770 0.022   5.2e-05 
+# 
+# P value adjustment method: bonferroni 
+# Warning message:
+# In posthoc.kruskal.dunn.test.default(x = Rel_dist, g = Genotype,  :
+#   Ties are present. z-quantiles were corrected for ties.
+
+library(FSA)
+dunnTest(Rel_dist ~ Genotype, data = dat, method = "bh")
+
+# Dunn (1964) Kruskal-Wallis multiple comparison
+# p-values adjusted with the Benjamini-Hochberg method.
+# 
+# Comparison         Z      P.unadj
+# 1  Control - Dhc36583  1.246761 2.124850e-01
+# 2  Control - Khc35770 -2.674022 7.494760e-03
+# 3 Dhc36583 - Khc35770 -4.298646 1.718448e-05
+# P.adj
+# 1 2.124850e-01
+# 2 1.124214e-02
+# 3 5.155345e-05
 
 
 ################ Rab7DN Ecad vesicles distance from cell centre...
