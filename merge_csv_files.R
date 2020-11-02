@@ -24,10 +24,10 @@ rm(list=ls())
 file_list <- list.files()
 require(data.table)
 dataset = rbindlist(lapply( file_list, fread ))
-write.csv(dataset, "all_combined.csv")
+write.csv(dataset, "6_combined.csv")
 
 
-# clean distance data
+# clean distance data  # Not eventually used in final transport paper
 rm(list=ls())
 
 dat <- data.frame(read.csv('all_distances.csv'))

@@ -384,9 +384,7 @@ dev.off()
 
 
 
-
-
-
+####################################################
 
 ######### ARF GFP DISTANCES
 require(ggplot2)
@@ -488,6 +486,9 @@ posthoc.kruskal.dunn.test(x = Rel_dist, g = Genotype, p.adjust.method = "bonferr
 # Warning message:
 # In posthoc.kruskal.dunn.test.default(x = Rel_dist, g = Genotype,  :
 #   Ties are present. z-quantiles were corrected for ties.
+
+posthoc.kruskal.dunn.test(x = Rel_dist, g = Genotype, p.adjust.method = "BH")
+
 
 library(FSA)
 dunnTest(Rel_dist ~ Genotype, data = dat, method = "bh")
